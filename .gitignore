@@ -1,3 +1,4 @@
+
 # History files
 .Rhistory
 .Rapp.history
@@ -45,5 +46,6 @@ docs/
 # translation temp files
 po/*~
 
-# RStudio Connect folder
-rsconnect/
+*.tar.gz
+*.Rcheck/
+d7976fb (Initial package upload)

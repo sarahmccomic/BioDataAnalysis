@@ -1,0 +1,34 @@
+Package: BioDataAnalysis
+Title: A package for cleaning, analyzing, and visualizing biological data
+Version: 0.0.0.9000
+Authors@R: person("Sarah", "McComic", email = "mccomic.sarah@ufl.edu", role = c("aut", "cre"))
+Description: BioDataAnalysis is an R package for streamlined analysis and visualization of biological data that is designed for any biological scientist who needs a package for genomic and proteomic data import, normalization, statistical testing, and visualization. BioDataAnalysis simplifies the workflow from raw data to insights, with tools tailored for gene and protein expression analysis, making it easier to perform routine analyses and visualize results.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    edgeR,
+    DESeq2,
+    stats,
+    ggplot2,
+    pheatmap,
+    caret,
+    randomForest,
+    igraph,
+    Biostrings,
+    httr,
+    readr,
+    readxl,
+    clusterProfiler,
+    ReactomePA,
+    TFBSTools,
+    motifStack,
+    biomaRt,
+    factoextra,
+    STRINGdb,
+    ape
+Suggests: 
+    msa,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
