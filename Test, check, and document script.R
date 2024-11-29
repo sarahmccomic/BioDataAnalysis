@@ -72,3 +72,4 @@ usethis::write_union(".gitignore", c(
   "*.Rcheck/"
 ))
 update.packages(ask = FALSE)
+
