@@ -21,10 +21,3 @@ import_data <- function(file_path, file_type = "csv") {
   }
   return(data)
 }
-
-# Example function that uses the global variables listed above
-plot_expression_heatmap <- function(data) {
-  ggplot(data, aes(x = Sample, y = Gene, fill = Expression)) +
-    geom_tile() +
-    theme_minimal()
-}
