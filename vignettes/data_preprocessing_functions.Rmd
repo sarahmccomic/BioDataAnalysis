@@ -1,0 +1,80 @@
+---
+title: "Data Preprocessing Functions"
+author: "Sarah McComic"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Data Preprocessing Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+## Introduction
+
+The `data_preprocessing` functions in the `BioDataAnalysis` package allow users to process biological data, such as gene expression counts, to prepare it for analysis. This vignette demonstrates how to use three essential functions for data preprocessing: `filter_low_expression()`, `normalize_counts()`, and `log_transform()`.
+
+## Function 1: Filtering Genes or Samples with Low Expression
+
+### `filter_low_expression()`
+
+The `filter_low_expression()` function filters genes with low expression counts across samples. It removes genes that don't meet the minimum threshold for expression.
+
+#### Example Usage
+
+```{r data_preprocessing().A}
+# Example gene expression data
+gene_data <- data.frame(
+  Sample1 = c(5, 2, 0, 8),
+  Sample2 = c(50, 60, 70, 80),
+  Sample3 = c(1, 0, 0, 0),
+  Sample4 = c(15, 20, 25, 30)
+)
+
+# Filter genes (rows) with a total sum of counts greater than 10
+filtered_genes <- filter_low_expression(gene_data, threshold = 10, by = "rows")
+print(filtered_genes)
+
+# Filter samples (columns) with a total sum of counts greater than 50
+filtered_samples <- filter_low_expression(gene_data, threshold = 50, by = "columns")
+print(filtered_samples)
+```
+## Function 2: Normalize Data
+
+### `normalize_counts()
+
+This function normalizes the expression data to make counts comparable across samples. This is done by scaling the data to counts per million.
+
+#### Example Usage
+```{r data_preprocessing().B}
+# Example gene expression data
+gene_data <- data.frame(
+  Sample1 = c(10, 20, 30),
+  Sample2 = c(5, 10, 15),
+  Sample3 = c(100, 200, 300)
+)
+
+# Normalize the counts to counts per million
+normalized_data <- normalize_counts(gene_data)
+print(normalized_data)
+```
+## Function #: log_transform
+
+### log_transform()
+
+This function performs a log base-2 transformation on the expression data. This transformation stabilizes variance and reduces the impact of extreme values. A small constant (1) is added to avoid issues with log(0).
+```{r data_preprocessing().C}
+# Example gene expression data
+gene_data <- data.frame(
+  Sample1 = c(1, 10, 100),
+  Sample2 = c(2, 20, 200),
+  Sample3 = c(3, 30, 300)
+)
+
+# Perform log transformation
+log_transformed_data <- log_transform(gene_data)
+print(log_transformed_data)
+```
+
+## Conclusion
+
+The data_preprocessing functions provide essential tools for preparing and transforming biological data, ensuring that it is in the optimal form for downstream analysis. The filter_low_expression() function helps eliminate genes or samples with insufficient expression levels, improving the quality and focus of the data. Normalization methods like normalize_counts() and normalize_expression() are crucial for adjusting data values, ensuring comparisons are meaningful across different samples or genes, particularly in cases of extreme value ranges. Finally, the log_transform() function stabilizes variance and mitigates the impact of outliers, further preparing the data for more accurate statistical analysis.
+
+Together, these functions enhance the reliability and robustness of gene expression datasets, streamlining the process of data preparation and making it easier for researchers to focus on extracting biological insights. These preprocessing steps are foundational to ensuring the success of complex analyses, including differential expression analysis, feature selection, and various machine learning tasks.

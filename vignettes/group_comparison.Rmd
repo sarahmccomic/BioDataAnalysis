@@ -1,0 +1,58 @@
+---
+title: "Group Comparison Statistical Analysis"
+author: "Sarah McComic"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Group Comparison Statistical Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r}
+library(BioDataAnalysis)
+```
+
+## Introduction
+
+The `group_comparison_stats()` function in the `BioDataAnalysis` package performs statistical comparisons between groups in biological datasets. It supports both t-tests and ANOVA, allowing users to compare means between two or more groups. This is essential for testing hypotheses related to differences in expression levels, biological measurements, and other experimental data.
+
+## Function: `group_comparison_stats()`
+
+This function performs statistical group comparisons using either a t-test or ANOVA depending on the specified test_type. It compares biological data across different groups and will return the results of the statistical test.
+
+### Example Usage
+
+#### Example 1: t-test
+
+For comparing two groups, the t-test can be used. Below is an example of performing a t-test between two groups in a dataset:
+
+```{r group_comparison_stats().A}
+# Example data frame
+set.seed(32608)
+data <- data.frame(
+  Value = c(rnorm(30, mean = 5), rnorm(30, mean = 10)),
+  Group = rep(c("Group1", "Group2"), each = 30)
+)
+
+# Perform a t-test between the two groups
+t_test_result <- Group_comparison(data$Value, data$Group, test_type = "t-test")
+print(t_test_result)
+```
+
+### Example Usage
+
+#### Example 2: ANOVA
+
+For comparing more than two groups, ANOVA is used. Below is an example of performing ANOVA for a dataset with three groups:
+
+```{r group_comparison_stats().B}
+# Example data frame with 3 groups
+data$Group <- rep(c("Group1", "Group2", "Group3"), each = 20)
+
+# Perform ANOVA for the data
+anova_result <- Group_comparison(data$Value, data$Group, test_type = "anova")
+print(anova_result)
+```
+
+## Conclusion
+
+The group_comparison_stats() functions, including t-tests and ANOVA, are essential tools for comparing biological data across different groups. These statistical methods help identify significant differences in gene expression or other biological metrics between conditions, enabling researchers to uncover meaningful patterns in their data. By performing robust statistical tests, these functions provide reliable insights into how different experimental conditions affect biological outcomes, supporting the identification of potential biomarkers or therapeutic targets.

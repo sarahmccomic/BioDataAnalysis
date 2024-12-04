@@ -1,0 +1,57 @@
+---
+title: "Import Biological Data"
+author: "Sarah McComic"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Import Biological Data}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+
+## Introduction
+
+The `import_data()` function from the `BioDataAnalysis` package allows users to easily import biological data from commonly used file formats such as CSV and Excel. This function simplifies the process of loading data into R, ensuring that the data is ready for analysis and visualization.
+
+This vignette demonstrates how to use the `import_data()` function to import data from both CSV and Excel files. 
+
+## Function Overview
+
+### `import_data()`
+
+The `import_data()` function takes the path to a data file and the file type as input, allowing users to load the data into R as a data frame. The function currently supports importing from CSV and Excel file formats.
+
+#### Arguments:
+- `file_path`: The full path to the file you wish to import.
+- `file_type`: A string specifying the file format. Accepted values are `"csv"` for CSV files and `"excel"` for Excel files.
+
+#### Return Value:
+- A data frame containing the imported data.
+
+## Example Usage
+
+Below are examples of how to use the `import_data()` function for importing data from both CSV and Excel files.
+
+### Example 1: Importing a CSV File
+
+In this example, we will import a CSV file containing student data.
+
+```{r}
+library(BioDataAnalysis)
+```
+
+
+```{r Import_data_csv}
+# Import a CSV file
+csv_data <- import_data("C:/Users/sarah/Documents/Documents/Programming Class/Student_data.csv", file_type = "csv")
+head(csv_data)
+
+
+# Import an Excel file
+excel_data <- import_data("C:/Users/sarah/Documents/Documents/CA Enzyme Activity/Midgut CA relative activity with lepto and aceta.xlsx", file_type = "excel")
+head(excel_data)
+```
+
+# Conclusion
+
+The data imports function should have allowed you to import either a csv or an excel file format of your data. The outputs will look similar to what you see above in the examples
+

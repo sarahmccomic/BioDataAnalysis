@@ -1,0 +1,58 @@
+---
+title: "Network Analysis Functions"
+author: "Sarah McComic"
+date: "2024-12-04"
+output: html_document
+vignette: >
+  %\VignetteIndexEntry{Network Analysis Functions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+# Introduction
+
+This vignette provides an overview of the **network_analysis** functions in the **BioDataAnalysis** package. These functions enable you to retrieve and analyze protein-protein interaction (PPI) networks and calculate network statistics.
+
+Network analysis is essential to modern systems biology, by offering insights into the complex relationships between biological molecules. By representing interactions as networks, researchers can identify key players and uncover functional modules within biological systems.
+
+By integrating network analysis capabilities, the package empowers researchers to leverage interaction data for hypothesis generation, pathway exploration, and functional annotation, bridging the gap between molecular data and biological insight.
+
+## A) Retrieve PPI Network
+
+The `get_ppi_network()` function retrieves a protein-protein interaction (PPI) network for a given list of genes, utilizaing the STRINGdb database. It allows users to analyze relationships between proteins within their gene list.
+
+### Example Usage:
+```{r network_analysis().A}
+# Example Gene List
+gene_list <- c("TP53", "BRCA1", "EGFR", "MYC")
+
+# Retrieve PPI network
+ppi_network <- get_ppi_network(gene_list)
+print(ppi_network)
+```
+
+## B) The calculate_network_centrality() function calculates centrality measures (such as between-ness) for a given network. Centrality is useful for identifying key nodes in a biological network.
+
+```{r network_analysis().B}
+library(igraph)
+
+# Create a mock igraph network
+nodes <- c("TP53", "BRCA1", "EGFR", "MYC")
+edges <- c("TP53", "BRCA1", "BRCA1", "EGFR", "EGFR", "MYC")
+network <- make_graph(edges, directed = FALSE)
+
+# Calculate centrality measures
+centrality <- calculate_network_centrality(network)
+print(centrality)
+```
+
+## C) The visualize_network() function generates a visualization of the interaction network using graphical layouts provided by the igraph package.
+
+```{r network_analysis().C}
+# Visualize the network
+visualize_network(network)
+```
+
+## Conclusion
+
+The network_analysis() functions provide powerful tools for exploring and analyzing protein-protein interaction (PPI) networks and calculating network centrality within biological systems. By integrating the STRINGdb database for retrieving PPI networks, calculating centrality measures, and visualizing the network, these functions allow users to uncover relationships and key nodes within molecular networks. Understanding these interactions is crucial for identifying potential biomarkers, understanding disease mechanisms, and discovering therapeutic targets. These functions are essential for bioinformaticians and researchers aiming to investigate the complex network of molecular interactions in various biological processes.

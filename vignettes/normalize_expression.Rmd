@@ -1,0 +1,60 @@
+---
+title: "Normalizing Expression Data"
+author: "Sarah McComic"
+date: "2024-12-04"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Normalizing Expression Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+The `normalize_expression()` function is designed to normalize gene or protein expression data, ensuring that datasets with vastly different ranges of values can be meaningfully compared. This is crucial for downstream analyses, where non-normalized data might introduce bias or lead to misinterpretation.
+
+Normalization methods supported:
+- **Log Transformation**: Stabilizes variance and reduces the influence of extreme values.
+- **Z-Score Normalization**: Centers and scales the data for statistical and machine learning applications.
+
+# Using the Function
+
+## Example Dataset
+
+The dataset represents raw expression values across four samples. Each row corresponds to a gene, and each column represents a sample.
+
+```{r setup, echo=TRUE}
+# Example expression data
+expression_data <- data.frame(
+  Sample1 = c(5, 50, 1, 15),
+  Sample2 = c(2, 60, 0, 20),
+  Sample3 = c(0, 70, 0, 25),
+  Sample4 = c(8, 80, 0, 30)
+)
+
+# Display the original dataset
+print("Original Expression Data:")
+print(expression_data)
+```
+
+Log normalization transforms values to reduce the impact of extreme values and stabilize variance. A small constant (e.g., 1) is added to avoid issues with log(0)
+
+```{r Log normalize}
+# Log-normalize the expression data
+log_normalized <- normalize_expression(expression_data, method = "log")
+print("Log Normalized Data:")
+print(log_normalized)
+```
+
+Z-score normalization scales each sample (column) to have a mean of 0 and a standard deviation of 1, making the data suitable for clustering or machine learning.
+
+```{r Z score normalize}
+# Z-score normalize the expression data
+zscore_normalized <- normalize_expression(expression_data, method = "z-score")
+print("Z-Score Normalized Data:")
+print(zscore_normalized)
+```
+
+## Conclusion
+
+The normalize_expression() function is a vital tool for preparing gene expression data for downstream analysis. By providing normalization methods such as log-transformation and z-score normalization, this function ensures that gene expression data with varying scales are comparable. Normalizing data is crucial for eliminating biases due to different ranges of expression values, allowing for more accurate comparisons across genes and samples. Whether working with RNA-seq, microarray data, or proteomic data, proper normalization is key for improving the robustness and interpretability of subsequent analyses, such as differential expression or clustering. This function streamlines the process, ensuring that researchers can focus on extracting meaningful biological insights from their normalized data.

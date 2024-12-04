@@ -1,0 +1,69 @@
+---
+title: "Functional Enrichment Analysis"
+author: "Sarah McComic"
+date: 12-4-24
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Functional Enrichment Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+## Introduction
+
+The `functional_enrichment` functions in the `BioDataAnalysis` package allow users to perform functional enrichment analysis to better understand the biological significance of their gene lists. The three main functions—`gene_ontology_enrichment()`, `pathway_enrichment()`, and `motif_enrichment()`—identify enriched Gene Ontology (GO) terms, pathways, and motifs, respectively, within a set of input genes.
+
+## Function 1: Gene Ontology Enrichment
+
+### `gene_ontology_enrichment()`
+
+This function performs Gene Ontology (GO) enrichment analysis for a list of gene identifiers. It identifies over-represented GO terms within the provided gene list and returns the associated p-values. This function is helpful for understanding the biological processes, cellular components, and molecular functions enriched in a set of genes.
+
+#### Example Usage
+```{r All functional_enrichment().A}
+# Example Gene List
+gene_list <- c("GeneA", "GeneB", "GeneC", "GeneD")
+
+# Perform GO Enrichment Analysis
+go_enrichment_results <- gene_ontology_enrichment(gene_list)
+
+# View Results
+print(go_enrichment_results)
+```
+## Function 2: Pathway Enrichment
+
+### `pathway_enrichment()
+
+This function performs pathway enrichment analysis for a list of genes, returning enriched pathways along with their associated p-values.
+
+#### Example Usage
+```{r All functional_enrichment().B}
+# Example Gene List
+gene_list <- c("GeneA", "GeneB", "GeneC", "GeneD")
+
+# Perform Pathway Enrichment Analysis
+pathway_enrichment_results <- pathway_enrichment(gene_list)
+
+# View Results
+print(pathway_enrichment_results)
+```
+## Function 3: motif_enrichment. 
+
+### `motif_enrichment_()
+
+This function detects over-represented motifs in the provided gene list, returning motifs and enrichment scores. 
+
+#### Example Usage
+```{r All functional_enrichment().C}
+# Example Gene List
+gene_list <- c("GeneA", "GeneB", "GeneC", "GeneD")
+
+# Perform Motif Enrichment Analysis
+motif_enrichment_results <- motif_enrichment(gene_list)
+
+# View Results
+print(motif_enrichment_results)
+```
+`
+## Conclusion
+
+The functional_enrichment() functions, including gene_ontology_enrichment(), pathway_enrichment(), and motif_enrichment(), are essential tools for gaining insights into the biological significance of a gene list. These functions allow you to explore the underlying biological processes, pathways, and regulatory motifs associated with their gene sets, helping to uncover the molecular mechanisms driving experimental outcomes. Outputs will look similar to the above examples. 

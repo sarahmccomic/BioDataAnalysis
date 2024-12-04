@@ -1,0 +1,43 @@
+---
+title: "Plotting Gene Expression Heatmap"
+author: "Sarah McComic"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Plotting Gene Expression Heatmap}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+## Introduction
+
+The `plot_expression_heatmap()` function in the `BioDataAnalysis` package generates a heatmap visualization of gene expression data. Heatmaps are widely used in genomics to display the expression levels of genes across multiple samples. The function leverages the `ggplot2` package to create a color-encoded representation of gene expression, making it easier to identify patterns and clusters in large datasets.
+
+In this vignette, we will demonstrate how to use `plot_expression_heatmap()` to visualize gene expression data and customize the heatmap.
+
+## Function Overview
+
+### `plot_expression_heatmap()`
+
+This function takes a data frame where rows represent genes and columns represent samples, with expression values as the entries. The function then generates a heatmap to represent gene expression across samples. 
+
+### Arguments:
+- `data`: A data frame containing the gene expression data. It should have columns `Gene`, `Sample`, and `Expression`, where `Expression` contains the numeric expression values.
+  
+### Example:
+
+Below is an example of how to use the `plot_expression_heatmap()` function to visualize gene expression data.
+
+```{r expression_heatmap}
+# Example gene expression data
+heatmap_genedata <- data.frame(
+  Gene = rep(c("Gene1", "Gene2", "Gene3"), each = 4),
+  Sample = rep(c("Sample1", "Sample2", "Sample3", "Sample4"), times = 3),
+  Expression = c(5, 2, 8, 6, 12, 9, 11, 7, 3, 4, 10, 8)
+)
+
+# Generate the heatmap using plot_expression_heatmap
+plot_expression_heatmap(heatmap_genedata)
+```
+
+## Conclusion
+
+The expression_heatmap() function provides a useful visualization tool for gene expression data, enabling the identification of patterns, clusters, and potential outliers across various samples. By utilizing color gradients to represent gene expression levels, heatmaps offer an intuitive and effective way to visually explore the relationships between genes and samples. This makes it easier to identify which genes show significant variation across conditions, and is particularly useful when working with large genomic datasets.

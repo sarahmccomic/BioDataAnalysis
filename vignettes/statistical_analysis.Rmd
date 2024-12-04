@@ -1,0 +1,72 @@
+---
+title: "Statistical Analysis of Data"
+author: "Sarah McComic"
+date: "2024-12-04"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Statistical Analysis of Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+Statistical analysis is a critical component of biological data analysis, enabling researchers to uncover significant patterns and relationships within large datasets. The BioDataAnalysis package provides several key functions to perform statistical tests, adjust for multiple comparisons, and analyze correlations in gene expression data.
+
+This vignette covers the following functions:
+
+A) Differential Expression Analysis: The differential_expression() function identifies genes with significant differences in expression levels between groups of samples. It calculates log fold changes (logFC) and p-values for each gene using statistical models such as those provided by DESeq2 or edgeR.
+
+B) P-Value Adjustment: The p_adjust() function adjusts p-values for multiple comparisons to control the false discovery rate with the Benjamini-Hochberg correction method as a default.
+
+C) Correlation Analysis: The correlation_matrix() function calculates the correlation between gene expression profiles. It is usually used to identify co-expressed genes or clusters of similar expression patterns.
+
+```{r}
+library(BioDataAnalysis)
+```
+
+
+## Example Usage (A)
+```{r}
+expression_data <- data.frame(
+  Sample1 = c(10, 15, 20, 25),
+  Sample2 = c(12, 17, 19, 28),
+  Sample3 = c(14, 14, 22, 24),
+  Sample4 = c(13, 16, 18, 27)
+)
+
+Group_labels <- factor(c("Control", "Control", "Treatment", "Treatment"))
+
+# Perform differential expression analysis
+diff_expr_results <- differential_expression(expression_data, Group_labels)
+print("Differential Expression Results:")
+print(diff_expr_results)
+
+```
+
+## Example Usage (B)
+```{r}
+raw_p_values <- c(0.01, 0.03, 0.2, 0.5, 0.001)
+
+# Adjust p-values
+adjusted_p_values <- p_adjust(raw_p_values)
+print("Adjusted P-Values:")
+print(adjusted_p_values)
+```
+## Example Usage (C)
+```{r}
+expression_data <- data.frame(
+  Sample1 = c(10, 15, 20, 25),
+  Sample2 = c(12, 17, 19, 28),
+  Sample3 = c(14, 14, 22, 24),
+  Sample4 = c(13, 16, 18, 27)
+)
+
+cor_matrix <- correlation_matrix(expression_data)
+print("Correlation Matrix of Expression Data:")
+print(cor_matrix)
+```
+
+## Conclusion
+
+The statistical_analysis() functions provide essential tools for analyzing and interpreting biological data through various statistical methods. By offering functions such as differential_expression() for identifying differentially expressed genes, p_adjust() for adjusting p-values, and correlation_matrix() for evaluating relationships between genes, this package enables researchers to uncover meaningful insights from gene expression data. These functions are designed to help mitigate biases, control for multiple comparisons, and identify significant patterns in data, which are critical steps in many bioinformatics workflows. 

@@ -1,0 +1,63 @@
+---
+title: "Visualizing the Data"
+author: "Sarah McComic"
+date: "2024-12-04"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Visualizing the Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+Data visualization is a key aspect of biological data analysis, allowing researchers to interpret complex results and patterns more easily. The BioDataAnalysis package includes a set of visualization functions specifically designed for gene expression data. These functions allow you to generate plots and heatmaps that help visualize relationships between genes, samples, and experimental conditions.
+
+This vignette covers the following visualization functions:
+
+A) MA Plot: The plot_ma() function generates an MA plot to visualize differential expression results. It displays the log fold change (M) versus the average expression level (A) for genes, allowing you to identify significantly up-regulated or down-regulated genes.
+
+B) Heatmap: The heatmap_gene_expression() function creates a heatmap that shows the expression levels of genes across samples. Each cell in the heatmap represents the expression value of a gene in a sample, using a color gradient to indicate magnitude.
+
+C) Principal Component Analysis (PCA): The plot_pca() function generates a PCA plot to visualize the clustering of samples based on their gene expression profiles. It reduces dimensionality while retaining the most variance, which helps to identify patterns or outliers among samples.
+
+## Example Usage (A)
+```{r}
+ma_data <- data.frame(
+  average_expression = c(1, 2, 3, 4, 5),
+  logFC = c(-1.5, 0.5, 1.2, -0.8, 2.3)
+)
+
+# Generate MA plot
+plot_ma(ma_data)
+```
+## Example Usage (B)
+```{r}
+expression_data <- data.frame(
+  Sample1 = c(10, 15, 20, 25),
+  Sample2 = c(12, 17, 19, 28),
+  Sample3 = c(14, 14, 22, 24),
+  Sample4 = c(13, 16, 18, 27)
+)
+rownames(expression_data) <- c("Gene1", "Gene2", "Gene3", "Gene4")
+
+# Plot heatmap
+heatmap_gene_expression(expression_data)
+```
+## Example Usage (C)
+```{r}
+expression_data <- data.frame(
+  Sample1 = c(10, 15, 20, 25),
+  Sample2 = c(12, 17, 19, 28),
+  Sample3 = c(14, 14, 22, 24),
+  Sample4 = c(13, 16, 18, 27)
+)
+rownames(expression_data) <- c("Gene1", "Gene2", "Gene3", "Gene4")
+
+# Generate PCA plot
+plot_pca(expression_data)
+```
+
+## Conclusion
+
+The visualizations functions offer a variety of powerful tools to aid in the interpretation of complex biological data. By using functions like plot_ma(), heatmap_gene_expression(), and plot_pca(), users can easily visualize key aspects of gene expression data, such as differential expression, gene expression levels across samples, and sample clustering. These functions are essential for identifying patterns and outliers in high-dimensional datasets, making them invaluable for biological analysis and interpretation. Visualizations are a crucial step in understanding the relationships within the data, and these functions help to facilitate that understanding with ease and flexibility.
